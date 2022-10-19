@@ -63,7 +63,7 @@ function App() {
                 key={columnId}
               >
                 <div className="column-container">
-                  <h3>{column.name}</h3>
+                  <div className="column-header">{column.name} <span>{column.items.length}</span></div>
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {
                       return (

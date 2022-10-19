@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Typography } from "@mui/material";
 
 
 const CardHeader = styled.div`
@@ -57,6 +58,9 @@ const ListItem = ({ item, index }) => {
     setOpen(false);
   };
 
+  const handleDelete = () => {
+    console.log(item.id);
+  }
 
   return (
     <div>
@@ -91,17 +95,19 @@ const ListItem = ({ item, index }) => {
         sx={{
           backgroundColor: 'black',
         }}>
-        <DialogTitle>{item.id} / {item.owner}</DialogTitle>
+        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner}/> {item.owner} / {item.id}</DialogTitle>
+             
         <DialogContent>
           <DialogContentText>
-            <div>
+            <Typography component={'span'} variant={'body2'}>
+              Task Details : <br/>
               {item.content}
-            </div>
-            <Avatar name={item.owner} size={50} round alt={item.owner} style={{ margin: '0 10px'}}/> 
+            </Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} variant="contained">Done</Button>
+          <Button onClick={handleDelete} variant="contained" color="error">Delete</Button>
+          <Button onClick={handleClose} variant="contained">Close</Button>
         </DialogActions>
       </Dialog>
     </div>
