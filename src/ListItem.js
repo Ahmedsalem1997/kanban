@@ -1,14 +1,17 @@
 import { Draggable } from "react-beautiful-dnd";
-import { LoremIpsum } from "lorem-ipsum";
-import { generateFromString } from "generate-avatar";
-import React, { useMemo } from "react";
+import React from "react";
 import styled from "styled-components";
 
-const Avatar = styled.img`
-  height: 22px;
-  width: 22px;
-  border-radius: 50%;
-`;
+import Avatar from 'react-avatar';
+
+import Button from '@mui/material/Button';
+import { blueGrey } from '@mui/material/colors';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 const CardHeader = styled.div`
   width: 100%;
@@ -41,35 +44,68 @@ const DragItem = styled.div`
   flex-direction: column;
 `;
 
-const lorem = new LoremIpsum();
+
 
 const ListItem = ({ item, index }) => {
-  const randomHeader = useMemo(() => lorem.generateWords(5), []);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
-    <Draggable draggableId={item.id} index={index}>
-      {(provided, snapshot) => {
-        return (
-          <DragItem
-            ref={provided.innerRef}
-            snapshot={snapshot}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <CardHeader>
-              <ItemId>{item.content}</ItemId>
-              <Author>
-                <Avatar
-                  src={`data:image/svg+xml;utf8,${generateFromString(item.id)}`}
-                />
-              </Author>
-            </CardHeader>
-            {randomHeader}
-            <CardFooter>...</CardFooter>
-          </DragItem>
-        );
-      }}
-    </Draggable>
+    <div>
+      <Draggable
+        key={item.id}
+        draggableId={item.id}
+        index={index}
+      >
+        {(provided, snapshot) => {
+          return (
+            <DragItem
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              onClick={handleClickOpen}
+            >
+              <CardHeader>
+                <ItemId>{item.id}</ItemId>
+                <Author>
+                  <Avatar name={item.owner} size={30} round alt={item.owner}/>
+                </Author>
+              </CardHeader>
+              {item.content}
+              <CardFooter>...</CardFooter>
+            </DragItem>
+          );
+        }}
+      </Draggable>
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        sx={{
+          backgroundColor: 'black',
+        }}>
+        <DialogTitle>{item.id} / {item.owner}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <Avatar name={item.owner} size={30} round alt={item.owner}/> 
+            <div>
+              {item.content}
+            </div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} error>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 

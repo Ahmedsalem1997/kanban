@@ -14,3 +14,21 @@ body {
     margin: 30px 3px;
     
 }
+
+.avatar {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+}
+
+.MuiDialog-paper {
+    background-color: #1c1d1f !important;
+    color: #fff !important;
+    min-width: 600px !important;
+}
+
+.MuiDialogContentText-root {
+    color: #fff !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}

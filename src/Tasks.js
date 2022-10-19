@@ -1,48 +1,57 @@
 const tasks = [
   {
     id: "TRE-1",
+    owner: "Ahmed Salem",
     content:
       "Creating common interface for the api to us any scraping implementation",
     column: "Backlog",
   },
   {
     id: "TRE-2",
+    owner: "Mina Fady",
     content: "credit limit estimator",
     column: "Backlog",
   },
   {
     id: "TRE-3",
+    owner: "Omar Nader",
     content: "Api Organization and Documentation",
     column: "Backlog",
   },
-  { id: "TRE-4", content: "Credit Limit ml", column: "Backlog" },
+  { id: "TRE-4", owner: "Mirna Assem", content: "Credit Limit ml", column: "Backlog" },
   {
     id: "TRE-5",
+    owner: "Mahmoud Fathy",
     content: "Evaluate invoice AI",
     column: "Backlog",
   },
   {
     id: "TRE-6",
+    owner: "Ahmed Salem",
     content: "Use Torch hub for Yolo",
     column: "Backlog",
   },
   {
     id: "TRE-7",
+    owner: "Yasser Rady",
     content: "Migrate Data from old invoice tables to new one",
     column: "Backlog",
   },
   {
     id: "TRE-8",
+    owner: "Salah Mohamed",
     content: "Multiple financial files",
     column: "Backlog",
   },
   {
     id: "TRE-9",
+    owner: "Ahmed Taha",
     content: "Backend",
     column: "Backlog",
   },
   {
     id: "TRE-10",
+    owner: "Bassem Soliman",
     content: "Enhance Frontend",
     column: "Backlog",
   },
