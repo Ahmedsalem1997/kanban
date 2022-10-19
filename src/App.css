@@ -8,11 +8,15 @@ body {
     padding: 0;
 }
 
+.logo {
+    text-align: center;
+}
+
 .list-grid {
     padding: 5px 5px;
     border-radius: 5px;
     margin: 30px 3px;
-    
+    background-color: #202224;
 }
 
 .avatar {
@@ -31,4 +35,15 @@ body {
     color: #fff !important;
     display: flex !important;
     justify-content: space-between !important;
+}
+
+.column-header {
+    font-size: 16px;
+    color: #e3e3e3;
+    margin: 15px 10px;
+}
+
+span.count {
+    font-size: 14px;
+    color: #d1d1d1;
 }
