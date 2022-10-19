@@ -2,8 +2,7 @@ const tasks = [
   {
     id: "TRE-1",
     owner: "Ahmed Salem",
-    content:
-      "Creating common interface for the api to us any scraping implementation",
+    content: "Creating interface for the api to us any scraping implementation",
     column: "Backlog",
     priority: 8,
   },
@@ -21,7 +20,13 @@ const tasks = [
     column: "Backlog",
     priority: 1,
   },
-  { id: "TRE-4", owner: "Mirna Assem", content: "Credit Limit ml", column: "Backlog" },
+  {
+    id: "TRE-4",
+    owner: "Mirna Assem",
+    content: "Credit Limit ml",
+    column: "Backlog",
+    priority: 2,
+  },
   {
     id: "TRE-5",
     owner: "Mahmoud Fathy",
@@ -118,7 +123,7 @@ const data = {
   },
 
   columns: {
-    "Backlog": {
+    Backlog: {
       name: "Backlog",
       items: tasks,
     },
@@ -134,7 +139,7 @@ const data = {
       name: "In Review",
       items: [],
     },
-    "Done": {
+    Done: {
       name: "Done",
       items: [],
     },

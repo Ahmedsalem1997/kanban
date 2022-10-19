@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import './App.css';
+import "./App.css";
 import styled from "styled-components";
 import data from "./Tasks";
 import ListItem from "./ListItem";
@@ -26,12 +26,12 @@ const onDragEnd = (result, columns, setColumns) => {
       ...columns,
       [source.droppableId]: {
         ...sourceColumn,
-        items: sourceItems
+        items: sourceItems,
       },
       [destination.droppableId]: {
         ...destColumn,
-        items: destItems
-      }
+        items: destItems,
+      },
     });
   } else {
     const column = columns[source.droppableId];
@@ -42,8 +42,8 @@ const onDragEnd = (result, columns, setColumns) => {
       ...columns,
       [source.droppableId]: {
         ...column,
-        items: copiedItems
-      }
+        items: copiedItems,
+      },
     });
   }
 };
@@ -75,16 +75,16 @@ function App() {
       </div>
       <ListGrid>
         <DragDropContext
-          onDragEnd={result => onDragEnd(result, columns, setColumns)}
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
         >
           {Object.entries(columns).map(([columnId, column], index) => {
             return (
-              <div
-                className="list-grid"
-                key={columnId}
-              >
+              <div className="list-grid" key={columnId}>
                 <div className="column-container">
-                  <div className="column-header">{column.name} <span className="count">{column.items.length}</span></div>
+                  <div className="column-header">
+                    {column.name}{" "}
+                    <span className="count">{column.items.length}</span>
+                  </div>
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {
                       return (
@@ -94,12 +94,20 @@ function App() {
                           style={{
                             padding: 0,
                             width: 280,
-                            minHeight: 500
+                            minHeight: 500,
                           }}
                         >
-                          {column.items.sort((a, b) => b.priority - a.priority).map((item, index) => {
-                            return (<ListItem item={item} index={index} key={item.id} />)
-                          })}
+                          {column.items
+                            .sort((a, b) => b.priority - a.priority)
+                            .map((item, index) => {
+                              return (
+                                <ListItem
+                                  item={item}
+                                  index={index}
+                                  key={item.id}
+                                />
+                              );
+                            })}
                           {provided.placeholder}
                         </div>
                       );
