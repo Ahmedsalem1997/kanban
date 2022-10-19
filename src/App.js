@@ -50,8 +50,29 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function App() {
   const [columns, setColumns] = useState(data.columns);
+
+  const exportData = () => {
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+
+    link.click();
+  };
+
   return (
     <>
+      <h2 className="logo">Kanban Board</h2>
+      <div className="buttons-container">
+        <button className="btn" type="button">
+          Import Data
+        </button>
+        <button className="btn" type="button" onClick={exportData}>
+          Export Data
+        </button>
+      </div>
       <ListGrid>
         <DragDropContext
           onDragEnd={result => onDragEnd(result, columns, setColumns)}

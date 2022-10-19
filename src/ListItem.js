@@ -1,7 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
-import React from "react";
 import styled from "styled-components";
-
+import React from 'react'
 import Avatar from 'react-avatar';
 
 import Button from '@mui/material/Button';
@@ -58,10 +57,6 @@ const ListItem = ({ item, index }) => {
     setOpen(false);
   };
 
-  const handleDelete = () => {
-    console.log(item.id);
-  }
-
   return (
     <div>
       <Draggable
@@ -106,7 +101,6 @@ const ListItem = ({ item, index }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDelete} variant="contained" color="error">Delete</Button>
           <Button onClick={handleClose} variant="contained">Close</Button>
         </DialogActions>
       </Dialog>

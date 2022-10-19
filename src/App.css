@@ -25,6 +25,23 @@ body {
     border-radius: 50%;
 }
 
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    cursor: pointer;
+    border: 0;
+    font-weight: 600;
+    padding: 20px;
+    background: #050505;
+    color: #fff;
+    font-size: 15px;
+    width: 210px;
+    margin-right: 10px;
+}
+
 .MuiDialog-paper {
     background-color: #1c1d1f !important;
     color: #fff !important;
