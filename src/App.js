@@ -64,7 +64,7 @@ function App() {
 
   return (
     <>
-      <h2 className="logo">Kanban Board</h2>
+      <h1 className="logo">Kanban Board</h1>
       <div className="buttons-container">
         <button className="btn" type="button">
           Import Data
@@ -84,7 +84,7 @@ function App() {
                 key={columnId}
               >
                 <div className="column-container">
-                  <div className="column-header">{column.name} <span>{column.items.length}</span></div>
+                  <div className="column-header">{column.name} <span className="count">{column.items.length}</span></div>
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {
                       return (
@@ -97,7 +97,7 @@ function App() {
                             minHeight: 500
                           }}
                         >
-                          {column.items.map((item, index) => {
+                          {column.items.sort((a, b) => b.priority - a.priority).map((item, index) => {
                             return (<ListItem item={item} index={index} key={item.id} />)
                           })}
                           {provided.placeholder}

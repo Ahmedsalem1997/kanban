@@ -48,6 +48,7 @@ const DragItem = styled.div`
 const ListItem = ({ item, index }) => {
 
   const [open, setOpen] = React.useState(false);
+  const priorityRate = item.priority;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,6 +97,7 @@ const ListItem = ({ item, index }) => {
           <DialogContentText>
             <Typography component={'span'} variant={'body2'}>
               Task Details : <br/>
+              {priorityRate < 2 ? 'No Prior' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} <br />
               {item.content}
             </Typography>
           </DialogContentText>
