@@ -1,0 +1,126 @@
+const tasks = [
+  {
+    id: "TRE-1",
+    content:
+      "Creating common interface for the api to us any scraping implementation",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-2",
+    content: "credit limit estimator",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-3",
+    content: "Api Organization and Documentation",
+    column: "Backlog",
+  },
+  { id: "TRE-4", content: "Credit Limit ml", column: "Backlog" },
+  {
+    id: "TRE-5",
+    content: "Evaluate invoice AI",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-6",
+    content: "Use Torch hub for Yolo",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-7",
+    content: "Migrate Data from old invoice tables to new one",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-8",
+    content: "Multiple financial files",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-9",
+    content: "Backend",
+    column: "Backlog",
+  },
+  {
+    id: "TRE-10",
+    content: "Enhance Frontend",
+    column: "Backlog",
+  },
+];
+
+const data = {
+  tasks: {
+    "task-1": {
+      id: "TRE-1",
+      content:
+        "Creating common interface for the api to us any scraping implementation",
+      column: "Backlog",
+    },
+    "task-2": {
+      id: "TRE-2",
+      content: "credit limit estimator",
+      column: "Backlog",
+    },
+    "task-3": {
+      id: "TRE-3",
+      content: "Api Organization and Documentation",
+      column: "Backlog",
+    },
+    "task-4": { id: "TRE-4", content: "Credit Limit ml", column: "Backlog" },
+    "task-5": {
+      id: "TRE-5",
+      content: "Evaluate invoice AI",
+      column: "Backlog",
+    },
+    "task-6": {
+      id: "TRE-6",
+      content: "Use Torch hub for Yolo",
+      column: "Backlog",
+    },
+    "task-7": {
+      id: "TRE-7",
+      content: "Migrate Data from old invoice tables to new one",
+      column: "Backlog",
+    },
+    "task-8": {
+      id: "TRE-8",
+      content: "Multiple financial files",
+      column: "Backlog",
+    },
+    "task-9": {
+      id: "TRE-9",
+      content: "Backend",
+      column: "Backlog",
+    },
+    "task-19": {
+      id: "TRE-10",
+      content: "Enhance Frontend",
+      column: "Backlog",
+    },
+  },
+
+  columns: {
+    "Backlog": {
+      name: "Backlog",
+      items: tasks,
+    },
+    "To do": {
+      name: "To do",
+      items: [],
+    },
+    "In Progress": {
+      name: "In Progress",
+      items: [],
+    },
+    "In Review": {
+      name: "In Review",
+      items: [],
+    },
+    "Done": {
+      name: "Done",
+      items: [],
+    },
+  },
+};
+
+export default data;
