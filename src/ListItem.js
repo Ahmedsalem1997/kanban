@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Avatar from 'react-avatar';
 
 import Button from '@mui/material/Button';
-import { blueGrey } from '@mui/material/colors';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -95,14 +94,14 @@ const ListItem = ({ item, index }) => {
         <DialogTitle>{item.id} / {item.owner}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Avatar name={item.owner} size={30} round alt={item.owner}/> 
             <div>
               {item.content}
             </div>
+            <Avatar name={item.owner} size={50} round alt={item.owner} style={{ margin: '0 10px'}}/> 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} error>Close</Button>
+          <Button onClick={handleClose} variant="contained">Done</Button>
         </DialogActions>
       </Dialog>
     </div>
