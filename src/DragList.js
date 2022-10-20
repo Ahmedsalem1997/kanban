@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import ListItem from "./ListItem";
+
+import TasksContext from "./context/TasksContext";
 
 const ListGrid = styled.div`
   display: grid;
@@ -45,8 +47,11 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-const DragList = ({ data }) => {
-  const [columns, setColumns] = useState(data);
+const DragList = () => {
+
+  const { columnsData } = useContext(TasksContext);
+
+  const [columns, setColumns] = useState(columnsData);
   return (
     <ListGrid>
       <DragDropContext

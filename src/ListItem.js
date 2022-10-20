@@ -1,6 +1,6 @@
+import React, { useContext } from 'react';
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import React from 'react'
 import Avatar from 'react-avatar';
 
 import Button from '@mui/material/Button';
@@ -10,6 +10,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from "@mui/material";
+
+import TasksContext from "./context/TasksContext";
 
 
 const CardHeader = styled.div`
@@ -47,6 +49,7 @@ const DragItem = styled.div`
 
 const ListItem = ({ item, index }) => {
 
+  const { deleteTask } = useContext(TasksContext)
   const [open, setOpen] = React.useState(false);
   const priorityRate = item.priority;
 
@@ -103,6 +106,7 @@ const ListItem = ({ item, index }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <Button onClick={() => deleteTask(item.id)} variant="contained" color="error">Delete</Button>
           <Button onClick={handleClose} variant="contained">Close</Button>
         </DialogActions>
       </Dialog>
