@@ -1,94 +1,99 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { DragDropContext } from "react-beautiful-dnd";
-import DraggableElement from "./DraggableElement";
-import tasks from './Tasks';
-
-
-const DragDropContextContainer = styled.div`
-  padding: 5px;
-  border-radius: 1px;
-`;
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import ListItem from "./ListItem";
 
 const ListGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 `;
 
-// fake data generator
-const getItems = (count, prefix) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => {
-    const randomId = Math.floor(Math.random() * 1000);
-    return {
-      id: `TRE-${randomId}`,
-      prefix,
-      content: `TRE-${randomId}`,
-    };
-  });
+const onDragEnd = (result, columns, setColumns) => {
+  if (!result.destination) return;
+  const { source, destination } = result;
 
-const removeFromList = (list, index) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(index, 1);
-  return [removed, result];
+  if (source.droppableId !== destination.droppableId) {
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    const [removed] = sourceItems.splice(source.index, 1);
+    destItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems,
+      },
+      [destination.droppableId]: {
+        ...destColumn,
+        items: destItems,
+      },
+    });
+  } else {
+    const column = columns[source.droppableId];
+    const copiedItems = [...column.items];
+    const [removed] = copiedItems.splice(source.index, 1);
+    copiedItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems,
+      },
+    });
+  }
 };
 
-const addToList = (list, index, element) => {
-  const result = Array.from(list);
-  result.splice(index, 0, element);
-  return result;
-};
-
-const lists = ["Backlog", "Todo", "In Progress", "In Review", "Done"];
-
-const generateLists = () =>
-  lists.reduce(
-    (acc, listKey) => ({ ...acc, [listKey]: getItems(tasks.length, listKey) }),
-    {}
-  );
-
-function DragList() {
-  const [elements, setElements] = React.useState(generateLists());
-
-  useEffect(() => {
-    setElements(generateLists());
-  }, []);
-
-  const onDragEnd = (result) => {
-    if (!result.destination) {
-      return;
-    }
-    const listCopy = { ...elements };
-
-    const sourceList = listCopy[result.source.droppableId];
-    const [removedElement, newSourceList] = removeFromList(
-      sourceList,
-      result.source.index
-    );
-    listCopy[result.source.droppableId] = newSourceList;
-    const destinationList = listCopy[result.destination.droppableId];
-    listCopy[result.destination.droppableId] = addToList(
-      destinationList,
-      result.destination.index,
-      removedElement
-    );
-
-    setElements(listCopy);
-  };
-
+const DragList = ({ data }) => {
+  const [columns, setColumns] = useState(data);
   return (
-    <DragDropContextContainer>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <ListGrid>
-          {lists.map((listKey) => (
-            <DraggableElement
-              elements={elements[listKey]}
-              key={listKey}
-              prefix={listKey}
-            />
-          ))}
-        </ListGrid>
+    <ListGrid>
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+      >
+        {Object.entries(columns).map(([columnId, column], index) => {
+          return (
+            <div className="list-grid" key={columnId}>
+              <div className="column-container">
+                <div className="column-header">
+                  {column.name}{" "}
+                  <span className="count">{column.items.length}</span>
+                </div>
+                <Droppable droppableId={columnId} key={columnId}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          padding: 0,
+                          width: 280,
+                          minHeight: 500,
+                        }}
+                      >
+                        {column.items
+                          .sort((a, b) => b.priority - a.priority)
+                          .map((item, index) => {
+                            return (
+                              <ListItem
+                                item={item}
+                                index={index}
+                                key={item.id}
+                              />
+                            );
+                          })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </div>
+            </div>
+          );
+        })}
       </DragDropContext>
-    </DragDropContextContainer>
+    </ListGrid>
   );
 }
 

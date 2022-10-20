@@ -76,7 +76,7 @@ const ListItem = ({ item, index }) => {
               <CardHeader>
                 <ItemId>{item.id}</ItemId>
                 <Author>
-                  <Avatar name={item.owner} size={30} round alt={item.owner}/>
+                  <Avatar name={item.owner} size={30} round alt={item.owner} />
                 </Author>
               </CardHeader>
               {item.content}
@@ -85,18 +85,18 @@ const ListItem = ({ item, index }) => {
           );
         }}
       </Draggable>
-      <Dialog 
-        open={open} 
-        onClose={handleClose} 
+      <Dialog
+        open={open}
+        onClose={handleClose}
         sx={{
           backgroundColor: 'black',
         }}>
-        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner}/> {item.owner} / {item.id}</DialogTitle>
-             
+        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner} /> {item.owner} / {item.id}</DialogTitle>
+
         <DialogContent>
           <DialogContentText>
             <Typography component={'span'} variant={'body2'}>
-              Task Details : <br/>
+              Task Details : <br />
               {priorityRate < 2 ? 'No Prior' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} <br />
               {item.content}
             </Typography>
