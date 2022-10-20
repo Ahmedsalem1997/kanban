@@ -8,6 +8,7 @@ import TasksContext from "./context/TasksContext";
 const ListGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: 0 20px;
 `;
 
 const onDragEnd = (result, columns, setColumns) => {
