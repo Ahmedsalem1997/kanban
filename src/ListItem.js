@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Avatar from 'react-avatar';
@@ -10,8 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from "@mui/material";
-
-import TasksContext from "./context/TasksContext";
+// import TasksContext from "./context/TasksContext";
 
 
 const CardHeader = styled.div`
@@ -49,7 +48,7 @@ const DragItem = styled.div`
 
 const ListItem = ({ item, index }) => {
 
-  const { deleteTask } = useContext(TasksContext)
+  // const { deleteTask } = useContext(TasksContext)
   const [open, setOpen] = React.useState(false);
   const priorityRate = item.priority;
 
@@ -82,7 +81,7 @@ const ListItem = ({ item, index }) => {
                   <Avatar name={item.owner} size={30} round alt={item.owner} />
                 </Author>
               </CardHeader>
-              {item.content}
+              {item.title}
               <CardFooter>...</CardFooter>
             </DragItem>
           );
@@ -94,19 +93,21 @@ const ListItem = ({ item, index }) => {
         sx={{
           backgroundColor: 'black',
         }}>
-        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner} /> {item.owner} / {item.id}</DialogTitle>
+        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner} /> {item.id} / {item.title}</DialogTitle>
 
         <DialogContent>
           <DialogContentText>
             <Typography component={'span'} variant={'body2'}>
-              Task Details : <br />
-              {priorityRate < 2 ? 'No Prior' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} <br />
-              {item.content}
+              <span></span>
+              Assigne: {item.owner}  <br />
+              Priority : {priorityRate < 2 ? 'No Prior' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} <br />
+              Task Details :- <br />
+              {item.description}
             </Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => deleteTask(item.id)} variant="contained" color="error">Delete</Button>
+          {/* <Button onClick={() => deleteTask(item.id)} variant="contained" color="error">Delete</Button> */}
           <Button onClick={handleClose} variant="contained">Close</Button>
         </DialogActions>
       </Dialog>
