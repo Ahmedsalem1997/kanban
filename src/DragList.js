@@ -11,6 +11,7 @@ const ListGrid = styled.div`
   margin: 0 20px;
 `;
 
+
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
   const { source, destination } = result;
@@ -53,6 +54,8 @@ const DragList = () => {
   const { columnsData } = useContext(TasksContext);
 
   const [columns, setColumns] = useState(columnsData);
+
+
   return (
     <ListGrid>
       <DragDropContext
@@ -63,8 +66,8 @@ const DragList = () => {
             <div className="list-grid" key={columnId}>
               <div className="column-container">
                 <div className="column-header">
-                  {column.name}{" "}
-                  <span className="count">{column.items.length}</span>
+                  <div>{column.name}{" "}<span className="count">{column.items.length}</span></div>
+                  <span>...</span>
                 </div>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {

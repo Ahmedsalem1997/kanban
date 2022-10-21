@@ -9,6 +9,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import AdjustIcon from '@mui/icons-material/Adjust';
+import KeyboardControlKeyIcon from '@mui/icons-material/KeyboardControlKey';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Typography } from "@mui/material";
 // import TasksContext from "./context/TasksContext";
 
@@ -26,6 +31,9 @@ const Author = styled.div`
 `;
 const CardFooter = styled.div`
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  color: #76787c;
 `;
 
 const ItemId = styled.span`
@@ -82,7 +90,10 @@ const ListItem = ({ item, index }) => {
                 </Author>
               </CardHeader>
               {item.title}
-              <CardFooter>...</CardFooter>
+              <CardFooter>
+                <MoreHorizIcon fontSize='smal' className='footer-btn'/>
+                <span className='footer-prio'>{priorityRate < 2 ? <KeyboardArrowDownIcon fontSize='small'/> : priorityRate < 5 ? <AdjustIcon fontSize='small'/> : priorityRate < 9 ? <KeyboardControlKeyIcon fontSize='small'/> : <KeyboardDoubleArrowUpIcon fontSize='small'/>}</span>
+              </CardFooter>
             </DragItem>
           );
         }}
@@ -97,12 +108,11 @@ const ListItem = ({ item, index }) => {
 
         <DialogContent>
           <DialogContentText>
-            <Typography component={'span'} variant={'body2'}>
-              <span></span>
-              Assigne: {item.owner}  <br />
-              Priority : {priorityRate < 2 ? 'No Prior' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} <br />
-              Task Details :- <br />
-              {item.description}
+            <Typography component={'span'} variant={'body2'} className="task-details">
+              <span>Assigne: {item.owner}</span>
+              <span>Priority : {priorityRate < 2 ? 'No Prio' : priorityRate < 5 ? 'Low' : priorityRate < 9 ? 'High' : 'Highest'} </span>
+              <span>Task Details :- {item.description}
+              </span>
             </Typography>
           </DialogContentText>
         </DialogContent>

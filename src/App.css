@@ -71,9 +71,39 @@ body {
     font-size: 16px;
     color: #e3e3e3;
     margin: 15px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 span.count {
     font-size: 14px;
     color: #d1d1d1;
+}
+
+.task-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.task-details span {
+    margin: 6px 0;
+}
+
+.footer-btn {
+    color: #76787c;
+    border: 1px solid #76787c;
+    padding: 3px;
+    font-size: 13px;
+}
+
+.footer-prio {
+    color: #76787c;
+    padding: 0 3px 1px 3px;
+    font-size: 10px;
+}
+
+.footer-prio svg {
+    width: 25px;
+    height: 14px;
 }
