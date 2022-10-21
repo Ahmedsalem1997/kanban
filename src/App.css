@@ -84,10 +84,15 @@ span.count {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: #e3e3e3;
 }
 
 .task-details span {
     margin: 6px 0;
+}
+
+.dialog-title {
+    font-size: 15px !important;
 }
 
 .footer-btn {
@@ -105,5 +110,5 @@ span.count {
 
 .footer-prio svg {
     width: 25px;
-    height: 14px;
+    height: 18px;
 }

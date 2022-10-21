@@ -15,7 +15,6 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Typography } from "@mui/material";
-// import TasksContext from "./context/TasksContext";
 
 
 const CardHeader = styled.div`
@@ -56,7 +55,6 @@ const DragItem = styled.div`
 
 const ListItem = ({ item, index }) => {
 
-  // const { deleteTask } = useContext(TasksContext)
   const [open, setOpen] = React.useState(false);
   const priorityRate = item.priority;
 
@@ -104,8 +102,9 @@ const ListItem = ({ item, index }) => {
         sx={{
           backgroundColor: 'black',
         }}>
-        <DialogTitle><Avatar name={item.owner} size={35} round alt={item.owner} /> {item.id} / {item.title}</DialogTitle>
-
+        <DialogTitle>
+          <Avatar name={item.owner} size={35} round alt={item.owner} /> <span className='dialog-title'>{item.id} / {item.title}</span>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Typography component={'span'} variant={'body2'} className="task-details">
@@ -117,7 +116,6 @@ const ListItem = ({ item, index }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={() => deleteTask(item.id)} variant="contained" color="error">Delete</Button> */}
           <Button onClick={handleClose} variant="contained">Close</Button>
         </DialogActions>
       </Dialog>
